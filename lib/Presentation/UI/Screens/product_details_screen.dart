@@ -1,6 +1,7 @@
 import 'package:ecommerce/Data/model/product_details.dart';
 import 'package:ecommerce/Presentation/State_holders/addTo_cart_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/product_details_controller.dart';
+import 'package:ecommerce/Presentation/State_holders/review_list_controller.dart';
 import 'package:ecommerce/Presentation/UI/Screens/review_screen.dart';
 import 'package:ecommerce/Presentation/UI/Utility/app_color.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/ProductDetailsScreen_Widgets/custom_stepper.dart';
@@ -30,8 +31,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     });
     super.initState();
   }
-  // ProductSizeList productSizeList = ProductSizeList();
-  // int selectedIndexValue = productSizeList.selectedIndex;
+  int quantity = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -66,16 +66,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ),
                 ),
               ),
-            ProuductDetailsNavbar(productDetailsController.productDetails, productDetailsController.availableColors, productDetailsController.availableSizes),
-
-            // ProductDetailsNav(
-            // title: "Price",
-            // price: 1000,
-            // buttonText: "Add To Cart",
-            // onTap: () {
-            //
-            // }),
-              // adToCartBottomNav(productDetailsController.productDetails, productDetailsController.availableColors, productDetailsController.availableSizes)
+            ProuductDetailsNavbar(productDetailsController.productDetails, productDetailsController.availableColors, productDetailsController.availableSizes, quantity),
 
             ],
           ),
@@ -105,7 +96,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   upperLimit: 10,
                   stepValue: 1,
                   value: 1,
-                  onChange: (onChange) {})
+                  onChange: (newValue) {
+                    quantity = newValue;
+                  })
             ],
           ),
           Row(
@@ -127,7 +120,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ]),
               TextButton(
                 onPressed: () {
-                  Get.to(const ReviewScreen());
+                  Get.find<ReviewListController>().getReviewList(productDetails.productId!);
                 },
                 child: Text(
                   "Review",
@@ -154,7 +147,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           const SizedBox(
             height: 16,
           ),
-          ProductColorList(colorList: color),
+          ProductColorsList(
+            colors:color,
+            onSelected: (int selected){},
+            initialSelected: 0,
+
+          ),
 
           const SizedBox(
             height: 16,
@@ -196,22 +194,5 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
 
 
-  // adToCartBottomNav(ProductDetails details, List<String>colors, List<String>sizes) {
-  //   GetBuilder<AddToCartController>(
-  //       builder: (addToCartController) {
-  //         if(addToCartController.addToCartInProgress){
-  //           return const Center(child: CircularProgressIndicator(),);
-  //         }
-  //         return ProductDetailsNav(
-  //             title: "Price",
-  //             price: 1000,
-  //             buttonText: "Add To Cart",
-  //             onTap: () {
-  //               addToCartController.addToCart(details.id!, colors[ProductColorList.selectedColorIndex].toString(), sizes[productSizeList.selectedIndex] );
-  //               addToCartController.addToCart(details.id!, colors[0].toString(), sizes[0] );
-  //             });
-  //       }
-  //   );
-  //
-  // }
+
 }

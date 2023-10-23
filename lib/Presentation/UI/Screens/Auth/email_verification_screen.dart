@@ -100,7 +100,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
  Future<void> verifyEmail(EmailVerificationController controller) async {
     final response = await controller.verifyEmail(_emailTEController.text.trim());
     if(response){
-      Get.to(OtpVerificationScreen(email: _emailTEController.text.trim(),));
+      Get.to(()=>OtpVerificationScreen(email: _emailTEController.text.trim(),));
     }else{
       Get.snackbar("Alert!", "Email Verification Failed");
     }

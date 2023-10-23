@@ -76,6 +76,36 @@ class _CraftyBayState extends State<CraftyBay> {
                   borderRadius: BorderRadius.circular(8)),
             ),
           ),
+        appBarTheme: AppBarTheme(
+          backgroundColor:  Colors.white,
+          iconTheme:  IconThemeData(color: Colors.black87)
+        ),
+      ),
+      darkTheme: ThemeData(
+          inputDecorationTheme: const InputDecorationTheme(
+            contentPadding: EdgeInsets.symmetric(horizontal: 16),
+            fillColor: Colors.black87,
+            border:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+            disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              textStyle:
+                  const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+            ),
+          ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey,
+        ),
+
       ),
       initialBinding: StateHolderBinders(),
     );

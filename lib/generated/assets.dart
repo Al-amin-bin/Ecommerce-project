@@ -23,6 +23,7 @@ class Assets {
   static const String modelProductDetails = 'lib/Data/model/product_details.dart';
   static const String modelProductDetailsModel = 'lib/Data/model/product_details_model.dart';
   static const String modelProductModel = 'lib/Data/model/product_model.dart';
+  static const String modelReviewModel = 'lib/Data/model/review_model.dart';
   static const String modelSliderData = 'lib/Data/model/slider_data.dart';
   static const String modelSliderModel = 'lib/Data/model/slider_model.dart';
   static const String productDetailsScreenWidgetsCustomStepper = 'lib/Presentation/UI/Widgets/ProductDetailsScreen_Widgets/custom_stepper.dart';
@@ -46,7 +47,7 @@ class Assets {
   static const String stateHoldersCartListController = 'lib/Presentation/State_holders/cart_list_controller.dart';
   static const String stateHoldersCategoryController = 'lib/Presentation/State_holders/category_controller.dart';
   static const String stateHoldersCompleteProfileController = 'lib/Presentation/State_holders/completeProfileController.dart';
-  static const String stateHoldersDeleteCartController = 'lib/Presentation/State_holders/delete_cart_controller.dart';
+  static const String stateHoldersCreateReviewController = 'lib/Presentation/State_holders/create_ReviewController.dart';
   static const String stateHoldersEmailVerificationScreenController = 'lib/Presentation/State_holders/email_verification_screen_controller.dart';
   static const String stateHoldersHomeSliderController = 'lib/Presentation/State_holders/home_slider_controller.dart';
   static const String stateHoldersMainBottomNavController = 'lib/Presentation/State_holders/main_bottom_nav_controller.dart';
@@ -56,6 +57,7 @@ class Assets {
   static const String stateHoldersProductDetailsController = 'lib/Presentation/State_holders/product_details_controller.dart';
   static const String stateHoldersProductListController = 'lib/Presentation/State_holders/productList_controller.dart';
   static const String stateHoldersReadprofileController = 'lib/Presentation/State_holders/readprofile_controller.dart';
+  static const String stateHoldersReviewListController = 'lib/Presentation/State_holders/review_list_controller.dart';
   static const String stateHoldersSpecialProductController = 'lib/Presentation/State_holders/special_product_controller.dart';
   static const String survicesNetworkCaller = 'lib/Data/survices/network_caller.dart';
   static const String utilitisUrls = 'lib/Data/utilitis/urls.dart';

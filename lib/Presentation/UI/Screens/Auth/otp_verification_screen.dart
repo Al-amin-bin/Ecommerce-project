@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:ecommerce/Data/model/network_response.dart';
 import 'package:ecommerce/Data/survices/network_caller.dart';
 import 'package:ecommerce/Data/utilitis/urls.dart';
+import 'package:ecommerce/Presentation/State_holders/email_verification_screen_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/otp_verification_screen_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/readprofile_controller.dart';
 import 'package:ecommerce/Presentation/UI/Screens/Auth/complete_profile_screen.dart';
@@ -13,13 +14,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class OtpVerificationScreen extends StatelessWidget {
+class OtpVerificationScreen extends StatefulWidget {
   OtpVerificationScreen({super.key, required this.email});
   final String email;
 
-  final TextEditingController _otpTEController = TextEditingController();
+  @override
+  State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
+}
 
-  final CounterController counterController = Get.put(CounterController());
+class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
+  final TextEditingController _otpTEController = TextEditingController();
+  @override
+  void initState() {
+    final CounterController counterController = Get.put(CounterController());
+    super.initState();
+  }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -74,7 +84,7 @@ class OtpVerificationScreen extends StatelessWidget {
                   controller: _otpTEController,
                   keyboardType: TextInputType.number,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  length: 4,
+                  length: 6,
                   obscureText: false,
                   animationType: AnimationType.fade,
                   pinTheme: PinTheme(
@@ -112,7 +122,6 @@ class OtpVerificationScreen extends StatelessWidget {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             verifyOtp(controller);
-
                           }
                         },
                         child: const Text("Next"));
@@ -135,12 +144,27 @@ class OtpVerificationScreen extends StatelessWidget {
                         ]),
                   );
                 }),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Resend Code",
-                    style: TextStyle(color: Colors.grey),
-                  ),
+                GetBuilder<EmailVerificationController>(
+                  builder: (emailVerificationController) {
+                    if (emailVerificationController.emailVerificationProgress) {
+                      return const Center(child: CircularProgressIndicator(),);
+                    }
+                    return TextButton(
+                        onPressed: () async {
+                          final response = await emailVerificationController
+                              .verifyEmail(widget.email);
+                          if (response) {
+                            Get.off(OtpVerificationScreen(email: widget.email));
+                            setState(() {
+                            });
+                          }
+                        },
+                        child: const Text(
+                          "Resend Code",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      );
+                    }
                 ),
               ]),
             ),
@@ -151,16 +175,10 @@ class OtpVerificationScreen extends StatelessWidget {
   }
 
   Future<void>verifyOtp(OTPVerificationController controller) async {
-    final response = await controller.verifyOtp(email, _otpTEController.text.trim());
+    final response = await controller.verifyOtp(widget.email, _otpTEController.text.trim());
     if(response){
-      Future<void> checkReadProfile(ReadProfileController controller) async {
-        final responseProfile  =await controller.readProfile();
-        if(responseProfile){
-          Get.offAll(()=> const MainNavScreen());
-        }else{
-          Get.offAll(()=>const CompleteProfileScreen());
-        }
-      }
+      Future.delayed(const Duration(seconds: 4)).then((value) => checkReadProfile());
+      // checkReadProfile();
       // Get.offAll(()=> const MainNavScreen());
 
     }else{
@@ -168,7 +186,18 @@ class OtpVerificationScreen extends StatelessWidget {
     }
   }
 
+  Future<void> checkReadProfile() async {
+    NetworkResponse response = await NetworkCaller.getRequest(Urls.readProfile);
 
+    if(response.isSuccess){
+      if(response.body!=null){
+        Get.off(()=>const MainNavScreen());
+      }else{
+        Get.off(()=> const CompleteProfileScreen());
+      }
+
+    }
+  }
 }
 
 class CounterController extends GetxController {

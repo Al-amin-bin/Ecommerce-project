@@ -37,10 +37,12 @@ class _HomeSliderState extends State<HomeSlider> {
                         color:AppColors.primaryColor.withOpacity(0.4)),
                     child: Stack(
                       children: [
-                        Image.network(sliderData.image??""),
+                        Center(
+                          child: Center(child: Image.network(sliderData.image??"")),
+                        ),
                         Positioned(
-                          bottom: 0,
-                            right: 0,
+                          bottom: 4,
+                            right: 60,
                             child: Text("${sliderData.title}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Colors.white),))
                       ],
                     ),);

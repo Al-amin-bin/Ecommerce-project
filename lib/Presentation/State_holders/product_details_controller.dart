@@ -9,7 +9,7 @@ class ProductDetailsController extends GetxController {
   ProductDetails _productDetails = ProductDetails();
   bool _productDetailsInProgress = false;
   String _errorMassage = "";
-  final List<String>_availableColors = [];
+   List<String>_availableColors = [];
    List<String>_availableSizes = [];
 
   ProductDetails get productDetails => _productDetails;
@@ -42,11 +42,14 @@ class ProductDetailsController extends GetxController {
 
   void _convertStringToColor(String color){
     // _availableColors.clear();
-    final List<String> splittedColors = color.split(",");
-    for(String c in splittedColors){
-      if(c.isNotEmpty){
-        _availableColors.add(c);
-      }
+    // final List<String> splittedColors = color.split(",");
+    // for(String c in splittedColors){
+    //   if(c.isNotEmpty){
+    //     _availableColors.add(c);
+    //   }
+    // }
+    if(color.isNotEmpty){
+      _availableColors = color.split(',');
     }
 
   }

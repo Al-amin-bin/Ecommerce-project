@@ -30,16 +30,30 @@ class CartListController extends GetxController{
       return false;
     }
   }
-  
-  void changePrice(int cardID, int noOfItem){
-    _cartListModel.data?.firstWhere((cartData) => cartData.id== cardID).numberOfItems = noOfItem;
+  Future<bool> removeCartList(int id) async {
+    _cartListInProgress= true;
+    update();
+    NetworkResponse response = await NetworkCaller.getRequest(Urls.removeCartList(id));
+    _cartListInProgress= false;
+    if(response.isSuccess){
+      _cartListModel.data?.removeWhere((element) => element.productId == id);
+      _calculateTotalPrice();
+      update();
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  void changeItem(int cardID, int noOfItem){
+    _cartListModel.data?.firstWhere((cartData) => cartData.id== cardID).quantity = noOfItem;
     _calculateTotalPrice();
   }
 
   void _calculateTotalPrice(){
     _totalPrice =0;
     for(CartData data in _cartListModel.data??[]){
-      _totalPrice += (data.numberOfItems * (double.tryParse(data.product?.price ?? "")??0));
+      _totalPrice += ((data.quantity ??1)* (double.tryParse(data.product?.price ?? "")??0));
       update();
     }
   }

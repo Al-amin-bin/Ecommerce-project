@@ -1,6 +1,5 @@
 import 'package:ecommerce/Data/model/cart_list_model.dart';
 import 'package:ecommerce/Presentation/State_holders/cart_list_controller.dart';
-import 'package:ecommerce/Presentation/State_holders/delete_cart_controller.dart';
 import 'package:ecommerce/Presentation/UI/Utility/app_color.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/ProductDetailsScreen_Widgets/custom_stepper.dart';
 import 'package:flutter/material.dart';
@@ -57,30 +56,24 @@ class CartProductCard extends StatelessWidget {
                                   TextSpan(
                                       text: "Color: ${cartData.color ?? ""}  "),
                                   TextSpan(
-                                      text: "Size: ${cartData.color ?? ""}"),
+                                      text: "Size: ${cartData.size ?? ""}"),
                                 ])),
                           ],
                         ),
                       ),
-                      GetBuilder<DeleteToCartListController>(
-                        builder: (deleteToCartListController) {
-                          if(deleteToCartListController.deleteCartInProgress){
-                            return const Center(child:  CircularProgressIndicator(),);
-                          }
-                          return IconButton(
+
+                       IconButton(
                               onPressed: () {
-                                deleteToCartListController.deleteToCartList(cartData.id!);
-                              }, icon: const Icon(Icons.delete));
-                        }
-                      )
+                                Get.find<CartListController>().removeCartList(cartData.productId!);
+                              }, icon: const Icon(Icons.delete))
+
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        // "\$${cartData.product!.price?? 0}",
-                        "\$2000",
+                        "\$${cartData.product?.price ?? ""}",
 
                         style: TextStyle(
                             color: AppColors.primaryColor, fontSize: 16),
@@ -90,11 +83,11 @@ class CartProductCard extends StatelessWidget {
                         child: FittedBox(
                           child: CustomStepper(
                               lowerLimit: 1,
-                              upperLimit: 10,
+                              upperLimit: 20,
                               stepValue: 1,
-                              value: cartData.numberOfItems,
+                              value: cartData.quantity?? 1,
                               onChange: (int value) {
-                                Get.find<CartListController>().changePrice(cartData.id!, value);
+                                Get.find<CartListController>().changeItem(cartData.id!, value);
                               }),
                         ),
                       ),

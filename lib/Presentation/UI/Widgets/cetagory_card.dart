@@ -17,8 +17,8 @@ class CategoryCard extends StatelessWidget {
         InkWell(
           onTap:onTap,
           child: Container(
-            height: 70,
-            width: 70,
+            height: MediaQuery.of(context).size.width/5.5,
+            width: MediaQuery.of(context).size.width/5,
             margin: const EdgeInsets.symmetric(horizontal: 8),
 
             padding:  EdgeInsets.all(16),

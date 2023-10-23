@@ -35,6 +35,7 @@ class CartData {
   String? createdAt;
   String? updatedAt;
   Product? product;
+  int? quantity;
   int numberOfItems = 1;
 
   CartData(
@@ -55,6 +56,7 @@ class CartData {
     size = json['size'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    quantity =int.tryParse(json['qty']) ;
     product =
     json['product'] != null ? Product.fromJson(json['product']) : null;
   }

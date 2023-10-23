@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 ProductSizeList productSizeList = const ProductSizeList();
 
-ProuductDetailsNavbar(ProductDetails details, List<String>colors, List<String>sizes) {
+ProuductDetailsNavbar(ProductDetails details, List<String>colors, List<String>sizes, int quantity) {
   return  Container(
     decoration: BoxDecoration(
         color: AppColors.primaryColor.withOpacity(0.1),
@@ -48,7 +48,7 @@ ProuductDetailsNavbar(ProductDetails details, List<String>colors, List<String>si
                     }
                     return ElevatedButton(
                         onPressed:() async {
-                          final result = await addToCartController.addToCart(details.id!, colors[ProductColorList.selectedColorIndex], sizes[ProductSizeList.selectedIndex]);
+                          final result = await addToCartController.addToCart(details.id!, colors[ProductColorsList.selectedColorIndex], sizes[ProductSizeList.selectedIndex],quantity );
                           if(result){
                             Get.snackbar("Added To Cart", "This has been Product added to Cart List",snackPosition: SnackPosition.BOTTOM);
                           }

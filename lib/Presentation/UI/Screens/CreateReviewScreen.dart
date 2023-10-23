@@ -1,7 +1,10 @@
+import 'package:ecommerce/Presentation/State_holders/create_ReviewController.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CreateReviewScreen extends StatefulWidget {
-  const CreateReviewScreen({super.key});
+  const CreateReviewScreen({super.key, required this.productID});
+  final int productID;
 
   @override
   State<CreateReviewScreen> createState() => _CreateReviewScreenState();
@@ -9,10 +12,10 @@ class CreateReviewScreen extends StatefulWidget {
 
 class _CreateReviewScreenState extends State<CreateReviewScreen> {
 
-  TextEditingController _firstNameTEController = TextEditingController();
-  TextEditingController _lastNameTEController = TextEditingController();
-  TextEditingController _reviewTEController = TextEditingController();
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _firstNameTEController = TextEditingController();
+  final TextEditingController _lastNameTEController = TextEditingController();
+  final TextEditingController _reviewTEController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +62,7 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
               TextFormField(
 
                 maxLines: 7,
-                controller: _firstNameTEController,
+                controller: _reviewTEController,
                 validator: (String? value){
                   if(value!.isEmpty){
                     return "Enter Reviews";
@@ -74,13 +77,18 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
               const SizedBox(height: 16,),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: (){
-                   if( _formKey.currentState!.validate()){
+                child: GetBuilder<CreateReviewController>(
+                  builder: (createReviewController) {
+                    return ElevatedButton(
+                      onPressed: (){
+                       if( _formKey.currentState!.validate()){
+                         createReviewController.createReview(_reviewTEController.text.trim(), widget.productID);
 
-                    }
-                  },
-                  child: Text("Submit"),
+                        }
+                      },
+                      child: const Text("Submit"),
+                    );
+                  }
                 ),
               )
             ],

@@ -1,13 +1,10 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce/Presentation/State_holders/category_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/home_slider_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/main_bottom_nav_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/new_product_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/populur_product_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/special_product_controller.dart';
-import 'package:ecommerce/Presentation/UI/Screens/category_product_screen.dart';
 import 'package:ecommerce/Presentation/UI/Screens/product_list_screen.dart';
-import 'package:ecommerce/Presentation/UI/Utility/app_color.dart';
 import 'package:ecommerce/Presentation/UI/Utility/image_asset.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/cetagory_card.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/circular_icon_button.dart';
@@ -37,6 +34,17 @@ class _HomeScreenState extends State<HomeScreen> {
             SvgPicture.asset(ImageAsset.craftyBayNavSVG),
             const Spacer(),
             CircularIconButton(() {}, Icons.person),
+            const SizedBox(
+              width: 8,
+            ),
+            CircularIconButton(() {
+              if(Get.isDarkMode){
+                Get.changeTheme(ThemeData.light());
+              }else{
+                Get.changeTheme(ThemeData.dark());
+              }
+
+            }, Icons.sunny),
             const SizedBox(
               width: 8,
             ),
@@ -91,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   title: "All Categories"),
               SizedBox(
-                height: 90,
+                height: MediaQuery.of(context).size.width/4,
                 child: GetBuilder<CategoryController>(
                     builder: (categoryController) {
                   if (categoryController.categoryProgress) {
