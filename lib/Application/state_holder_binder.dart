@@ -3,6 +3,7 @@ import 'package:ecommerce/Presentation/State_holders/cart_list_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/category_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/completeProfileController.dart';
 import 'package:ecommerce/Presentation/State_holders/create_ReviewController.dart';
+import 'package:ecommerce/Presentation/State_holders/create_invoice_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/email_verification_screen_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/home_slider_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/main_bottom_nav_controller.dart';
@@ -35,6 +36,7 @@ class StateHolderBinders extends Bindings{
     Get.put(ReadProfileController());
     Get.put(ReviewListController());
     Get.put(CreateReviewController());
+    Get.put(CreateInvoiceController());
   }
 
 }

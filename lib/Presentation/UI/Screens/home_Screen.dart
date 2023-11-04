@@ -5,6 +5,7 @@ import 'package:ecommerce/Presentation/State_holders/new_product_controller.dart
 import 'package:ecommerce/Presentation/State_holders/populur_product_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/special_product_controller.dart';
 import 'package:ecommerce/Presentation/UI/Screens/product_list_screen.dart';
+import 'package:ecommerce/Presentation/UI/Screens/profile_screen.dart';
 import 'package:ecommerce/Presentation/UI/Utility/image_asset.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/cetagory_card.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/circular_icon_button.dart';
@@ -33,7 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             SvgPicture.asset(ImageAsset.craftyBayNavSVG),
             const Spacer(),
-            CircularIconButton(() {}, Icons.person),
+            CircularIconButton(() {
+              Get.to(()=> ProfileScreen());
+            }, Icons.person),
             const SizedBox(
               width: 8,
             ),

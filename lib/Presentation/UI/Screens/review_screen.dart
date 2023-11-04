@@ -78,7 +78,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
                   InkWell(
                     onTap: (){
-                      // Get.to( CreateReviewScreen(productID: reviewListController.reviewListModel.data[index].productId??0));
+                      Get.to( CreateReviewScreen(productID: reviewListController.reviewListModel.data![0].productId??0, id: reviewListController.reviewListModel.data![0].id??0, ratting: '${reviewListController.reviewListModel.data![0].rating??0}', customerId: reviewListController.reviewListModel.data![0].customerId??0,));
 
                     },
                     child: CircleAvatar(

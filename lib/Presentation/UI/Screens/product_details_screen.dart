@@ -1,11 +1,8 @@
 import 'package:ecommerce/Data/model/product_details.dart';
-import 'package:ecommerce/Presentation/State_holders/addTo_cart_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/product_details_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/review_list_controller.dart';
-import 'package:ecommerce/Presentation/UI/Screens/review_screen.dart';
 import 'package:ecommerce/Presentation/UI/Utility/app_color.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/ProductDetailsScreen_Widgets/custom_stepper.dart';
-import 'package:ecommerce/Presentation/UI/Widgets/cart_screen_nav.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/ProductDetailsScreen_Widgets/product_details_slider.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/ProductDetailsScreen_Widgets/product_color_list.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/ProductDetailsScreen_Widgets/product_details_titleText.dart';

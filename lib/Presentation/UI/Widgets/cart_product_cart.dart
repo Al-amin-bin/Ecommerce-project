@@ -88,6 +88,8 @@ class CartProductCard extends StatelessWidget {
                               value: cartData.quantity?? 1,
                               onChange: (int value) {
                                 Get.find<CartListController>().changeItem(cartData.id!, value);
+                                print(cartData.id);
+                                print(cartData.quantity);
                               }),
                         ),
                       ),

@@ -188,6 +188,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
   Future<void> checkReadProfile() async {
     NetworkResponse response = await NetworkCaller.getRequest(Urls.readProfile);
+    print("Read profile____________________");
 
     if(response.isSuccess){
       if(response.body!=null){

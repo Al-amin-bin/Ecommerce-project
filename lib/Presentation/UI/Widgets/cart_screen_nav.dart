@@ -1,5 +1,8 @@
+import 'package:ecommerce/Presentation/State_holders/cart_list_controller.dart';
+import 'package:ecommerce/Presentation/UI/Screens/checkout_screen.dart';
 import 'package:ecommerce/Presentation/UI/Utility/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CartScreenNav extends StatelessWidget {
   const CartScreenNav({
@@ -24,9 +27,9 @@ class CartScreenNav extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Text(
+                 const Text(
                   "Total Price",
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 16, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 4,),
@@ -42,7 +45,11 @@ class CartScreenNav extends StatelessWidget {
             SizedBox(
                 width: 120,
                 child: ElevatedButton(
-                    onPressed:(){}, child:  Text("Check Out")))
+                    onPressed:(){
+                      if(Get.find<CartListController>().cartListModel.data?.isNotEmpty??false){
+                        Get.to(()=> const CheckoutScreen());
+                      }
+                    }, child:  const Text("Check Out")))
           ],
         ),
       ),

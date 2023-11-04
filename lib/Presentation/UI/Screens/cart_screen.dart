@@ -1,8 +1,5 @@
-import 'package:ecommerce/Data/model/cart_list_model.dart';
 import 'package:ecommerce/Presentation/State_holders/cart_list_controller.dart';
 import 'package:ecommerce/Presentation/State_holders/main_bottom_nav_controller.dart';
-import 'package:ecommerce/Presentation/UI/Utility/app_color.dart';
-import 'package:ecommerce/Presentation/UI/Widgets/ProductDetailsScreen_Widgets/custom_stepper.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/cart_screen_nav.dart';
 import 'package:ecommerce/Presentation/UI/Widgets/cart_product_cart.dart';
 import 'package:flutter/material.dart';

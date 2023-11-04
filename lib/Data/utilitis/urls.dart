@@ -14,4 +14,6 @@ class Urls{
   static String listReviewByProduct(int id) =>'$_baseUrl/ListReviewByProduct/$id';
   static String readProfile ='$_baseUrl/ReadProfile';
   static String completeProfile ='$_baseUrl/CreateProfile';
+  static String createReview ='$_baseUrl/CreateProductReview';
+  static String createInvoice ='$_baseUrl/InvoiceCreate';
 }

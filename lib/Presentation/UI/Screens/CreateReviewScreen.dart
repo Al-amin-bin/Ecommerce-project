@@ -1,10 +1,12 @@
 import 'package:ecommerce/Presentation/State_holders/create_ReviewController.dart';
+import 'package:ecommerce/Presentation/UI/Screens/review_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CreateReviewScreen extends StatefulWidget {
-  const CreateReviewScreen({super.key, required this.productID});
-  final int productID;
+  const CreateReviewScreen({super.key, required this.productID, required this.id, required this.ratting, required this.customerId});
+  final int productID, id, customerId;
+  final String ratting;
 
   @override
   State<CreateReviewScreen> createState() => _CreateReviewScreenState();
@@ -82,7 +84,8 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
                     return ElevatedButton(
                       onPressed: (){
                        if( _formKey.currentState!.validate()){
-                         createReviewController.createReview(_reviewTEController.text.trim(), widget.productID);
+                         createReviewController.createReview(_reviewTEController.text.trim(), widget.productID, widget.id, widget.ratting, widget.customerId);
+                         Get.to(()=>const ReviewScreen());
 
                         }
                       },
